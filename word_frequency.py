@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Word frequency exercise
 # TODO: (Read detailed instructions in the Readme file)
 # 1. Prompt the user: Ask the user to enter a sentence.
@@ -33,5 +31,23 @@ user_sentence = input("Enter a sentence: ")
 
 while (is_sentence(user_sentence) == False):
     print("This does not meet the criteria for a sentence.")
-    user_input = input("Enter a sentence: ")
+    user_sentence = input("Enter a sentence: ")
     
+unique = []
+frequencies = []
+
+splitted_sentence = user_sentence.split()
+
+for word in splitted_sentence:
+    clean_word = re.sub(r'[^\w]', '', word.lower()) #checks for clean words
+    if clean_word in unique:
+        i = unique.index(clean_word) #assigns value to the index of duplicate word
+        frequencies[i] += 1  #incerements that assigned index
+    else:
+        unique.append(clean_word)
+        frequencies.append(1)
+
+#used copilot
+for i in range(len(unique)):
+    print(f"{unique[i]}: {frequencies[i]}")
+
